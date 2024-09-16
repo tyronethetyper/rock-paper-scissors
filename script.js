@@ -59,15 +59,15 @@ function playGame() {
     }
 
     if (humanScore > computerScore) {
-        console.log('Congrats - you are the winner!');
+        alert('Congrats - you are the winner!');
         return;
     }
     else if (computerScore > humanScore) {
-        console.log('Sadly you are the loser! Computer wins.');
+        alert('Sadly you are the loser! Computer wins.');
         return;
     }
     else {
-        console.log('Its a tie! Share the trophy with the computer.');
+        alert('Its a tie! Share the trophy with the computer.');
         return;
     }
 }
