@@ -17,32 +17,48 @@ function getComputerChoice() {
     return comp_choice;
 }
 
+computer = getComputerChoice();
 
 
 function getHumanChoice() {
-    let player_choice = prompt("Type 1 for Rock, 2 for Paper or 3 for Scissors");
-    let choice_num = Number(player_choice);
-    let choice_string = "";
+    let prompt_choice = prompt("Rock, Paper or Scissors? Type your choice and cross your fingers.");
+    player_choice = prompt_choice.toLowerCase();
 
-    if (!(Number.isInteger(choice_num)) || choice_num < 1 || choice_num > 3) {
-        alert("Please enter a valid number between 1 and 3.");
+    if (player_choice != "rock" && player_choice != "scissors" && player_choice != "paper") {
+        alert("Please enter a valid choice - Rock, Paper or Scissors.");
         return getHumanChoice();
     }
-    if (choice_num === 3) {
-        choice_string = "scissors";
-    }
-    else if (choice_num === 2) {
-        choice_string = "paper";
-    }
-    else {
-        choice_string = "rock";
-    }
     
-    return choice_string;
+    return player_choice;
 }
 
-p_choice = getHumanChoice();
-console.log(p_choice);
+player = getHumanChoice();
+console.log(player);
 
+let humanScore = 0;
+let computerScore = 0;
+
+function playRound(humanChoice, computerChoice) {
+    let player_win;
+    if (humanChoice === computerChoice) {
+        return console.log(`It's a tie! You both chose ${humanChoice}.`);
+    }
+    
+    if (
+        (humanChoice === 'rock' && computerChoice === 'scissors') || 
+        (humanChoice === 'paper' && computerChoice === 'rock') || 
+        (humanChoice === 'scissors' && computerChoice === 'paper') 
+    ) {
+        humanScore++;
+        console.log(`You Win! ${humanChoice[0].toUpperCase() + humanChoice.slice(1)} beats ${computerChoice[0].toUpperCase() + computerChoice.slice(1)}`);
+        return;
+    } else {
+        computerScore++;
+        console.log(`You Lose! ${computerChoice[0].toUpperCase() + computerChoice.slice(1)} beats ${humanChoice[0].toUpperCase() + humanChoice.slice(1)}`);
+        return;
+    }
+}
+
+playRound(player, computer);
 
 
