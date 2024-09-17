@@ -1,0 +1,3 @@
+# Rock Paper Scissors Project
+
+In this project I created a simple Rock Paper Scissors game within a web interface that generated a random choice for the computer (either rock, paper or scissors) and gave the human player the ability to make their choice via a prompt. The game is programmed to consist of 5 rounds, with each round logging the winner to the console, and at the end of the round using an alert to advise who won the game based on who had won the most rounds or announce a tie if both computer and human player had won equal rounds. 
