@@ -40,13 +40,20 @@ function getPlayerSelection(e) {
     playGame(player_choice);
 } 
 
+let humanScore = 0;
+let computerScore = 0;
+
 function playGame(playerSelection) {
-    let humanScore = 0;
-    let computerScore = 0;
+    
+    if (computerScore > 5 || humanScore > 5) {
+        return;
+    }
+    comp_choice = getComputerChoice();
 
     function playRound(playerSelection, computerChoice) {
+        let result_text = "";
         if (playerSelection === computerChoice) {
-            console.log(`It's a tie! You both chose ${playerSelection}.`);
+            result_text = `It's a tie! You both chose ${playerSelection}.`;
         }
         
         else if (
@@ -55,13 +62,38 @@ function playGame(playerSelection) {
             (playerSelection === 'scissors' && computerChoice === 'paper') 
         ) {
             humanScore++;
-            console.log(`You Win! ${playerSelection[0].toUpperCase() + playerSelection.slice(1)} beats ${computerChoice[0].toUpperCase() + computerChoice.slice(1)}`);
+            result_text = `You Win! ${playerSelection[0].toUpperCase() + playerSelection.slice(1)} beats ${computerChoice[0].toUpperCase() + computerChoice.slice(1)}`;
         } else {
             computerScore++;
-            console.log(`You Lose! ${computerChoice[0].toUpperCase() + computerChoice.slice(1)} beats ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}`);
+            result_text = `You Lose! ${computerChoice[0].toUpperCase() + computerChoice.slice(1)} beats ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}`;
         }
+
+        result_p.textContent = result_text;
+        player_p.textContent = `Player Score: ${humanScore}`;
+        comp_p.textContent = `Computer Score: ${computerScore}`;
+
+        if (computerScore === 5 || humanScore === 5) {
+            
+            if (computerScore > humanScore) {
+                f_result.textContent = "The Computer is the winner :(";
+            }
+            else {
+                f_result.textContent = "You are the winner! :)";
+            }
+            
+        }
+
     }
+
+    playRound(playerSelection, comp_choice);
 }
 
+let player_score_text = "";
+let comp_score_text = "";
+
+const result_p = document.querySelector(".result");
+const player_p = document.querySelector(".p-score");
+const comp_p = document.querySelector(".c-score");
+const f_result = document.querySelector(".final-result");
 
 
